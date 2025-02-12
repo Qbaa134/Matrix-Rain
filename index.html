@@ -3,22 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF to DOCX Converter</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.15.349/pdf.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
+    <title>Matrix Rain</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background-color: black;
+        }
+
+        .matrix {
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: #0F0;
+            font-family: monospace;
+            font-size: 24px;
+            white-space: nowrap;
+        }
+
+        .digit {
+            position: absolute;
+            top: -30px;
+            opacity: 0;
+            animation: fall 3s infinite;
+        }
+
+        @keyframes fall {
+            0% { top: -30px; opacity: 0.1; }
+            100% { top: 100vh; opacity: 1; }
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>PDF to DOCX Converter</h1>
-        <p>Select a PDF or DOCX file to convert it.</p>
-        <div class="file-upload">
-            <input type="file" id="file-upload" accept=".pdf, .docx">
-            <button onclick="convert()">Convert</button>
-        </div>
-        <div id="result"></div>
-    </div>
+    <div class="matrix" id="matrix"></div>
 
-    <script src="script.js"></script>
+    <script>
+        const matrix = document.getElementById('matrix');
+        const columns = Math.floor(window.innerWidth / 20);
+        const rows = Math.floor(window.innerHeight / 24);
+
+        // Generate a string of digits and letters
+        const getRandomChar = () => Math.random() < 0.5 ? String.fromCharCode(Math.floor(Math.random() * 10) + 48) : String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+
+        // Create falling digits
+        function createMatrix() {
+            for (let i = 0; i < columns; i++) {
+                let column = document.createElement('div');
+                column.style.left = `${i * 20}px`;
+                column.style.position = 'absolute';
+                column.style.top = '0';
+                column.style.opacity = '0';
+                column.innerHTML = generateDigits();
+                matrix.appendChild(column);
+            }
+        }
+
+        // Create a string of digits for each column
+        function generateDigits() {
+            let str = '';
+            const numDigits = Math.floor(Math.random() * 10 + 5);  // Randomize length
+            for (let i = 0; i < numDigits; i++) {
+                str += getRandomChar() + '<br>';
+            }
+            return str;
+        }
+
+        // Start the animation
+        createMatrix();
+    </script>
 </body>
 </html>
