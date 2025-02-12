@@ -21,13 +21,14 @@
             font-family: monospace;
             font-size: 24px;
             white-space: nowrap;
+            z-index: 1;
         }
 
         .digit {
             position: absolute;
-            top: -30px;
+            top: -20px;
             opacity: 0;
-            animation: fall 5s linear infinite;
+            animation: fall 3s linear infinite;
         }
 
         @keyframes fall {
@@ -40,6 +41,7 @@
                 opacity: 1;
             }
         }
+
     </style>
 </head>
 <body>
@@ -60,7 +62,6 @@
                 column.style.position = 'absolute';
                 column.style.left = `${i * 20}px`;
                 column.style.top = '0';
-                column.style.opacity = '0';
                 matrix.appendChild(column);
                 generateColumnDigits(column);
             }
@@ -75,7 +76,7 @@
                 digit.innerHTML = getRandomChar();
                 column.appendChild(digit);
 
-                // Dodajemy opóźnienie dla każdego elementu, żeby animacje były różne
+                // Losowe opóźnienie animacji dla każdego elementu
                 digit.style.animationDelay = `${Math.random() * 5}s`;
             }
         }
