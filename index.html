@@ -20,39 +20,45 @@
             color: #0F0;
             font-family: monospace;
             font-size: 24px;
+            white-space: nowrap;
         }
 
         .digit {
             position: absolute;
             top: -30px;
             opacity: 0;
-            animation: fall 5s infinite;
-            animation-timing-function: linear;
+            animation: fall 5s linear infinite;
         }
 
         @keyframes fall {
-            0% { top: -30px; opacity: 0.1; }
-            100% { top: 100vh; opacity: 1; }
+            0% {
+                top: -30px;
+                opacity: 0.1;
+            }
+            100% {
+                top: 100%;
+                opacity: 1;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="matrix" id="matrix"></div>
+    <div id="matrix" class="matrix"></div>
 
     <script>
         const matrix = document.getElementById('matrix');
         const columns = Math.floor(window.innerWidth / 20);
         const rows = Math.floor(window.innerHeight / 24);
 
-        // Funkcja generująca losowe cyfry
+        // Funkcja generująca losowe cyfry i litery
         const getRandomChar = () => Math.random() < 0.5 ? String.fromCharCode(Math.floor(Math.random() * 10) + 48) : String.fromCharCode(Math.floor(Math.random() * 26) + 97);
 
-        // Funkcja generująca animację spadających cyfr
+        // Funkcja generująca kolumny z cyframi
         function createMatrix() {
             for (let i = 0; i < columns; i++) {
                 let column = document.createElement('div');
-                column.style.left = `${i * 20}px`;
                 column.style.position = 'absolute';
+                column.style.left = `${i * 20}px`;
                 column.style.top = '0';
                 column.style.opacity = '0';
                 matrix.appendChild(column);
@@ -60,15 +66,17 @@
             }
         }
 
-        // Funkcja generująca cyfry w każdej kolumnie
+        // Funkcja generująca cyfry dla każdej kolumny
         function generateColumnDigits(column) {
-            const numDigits = Math.floor(Math.random() * 5 + 5);  // Random number of digits
+            const numDigits = Math.floor(Math.random() * 10 + 5);  // Random number of digits
             for (let i = 0; i < numDigits; i++) {
                 let digit = document.createElement('div');
                 digit.classList.add('digit');
                 digit.innerHTML = getRandomChar();
                 column.appendChild(digit);
-                digit.style.animationDelay = `${Math.random() * 5}s`; // Random delay for each digit
+
+                // Dodajemy opóźnienie dla każdego elementu, żeby animacje były różne
+                digit.style.animationDelay = `${Math.random() * 5}s`;
             }
         }
 
