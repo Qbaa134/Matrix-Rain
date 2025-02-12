@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
@@ -81,8 +82,24 @@
             }
         }
 
-        // Startujemy generowanie spadających cyfr
-        createMatrix();
+        // Funkcja do uruchomienia trybu pełnoekranowego
+        function enterFullscreen() {
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+                document.documentElement.mozRequestFullScreen();
+            } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari i Opera
+                document.documentElement.webkitRequestFullscreen();
+            } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+                document.documentElement.msRequestFullscreen();
+            }
+        }
+
+        // Uruchamiamy tryb pełnoekranowy po załadowaniu strony
+        window.onload = function() {
+            enterFullscreen();
+            createMatrix();
+        };
     </script>
 </body>
 </html>
