@@ -26,9 +26,9 @@
 
         .digit {
             position: absolute;
-            top: -20px;
+            top: -30px;
             opacity: 0;
-            animation: fall 3s linear infinite;
+            animation: fall linear infinite;
         }
 
         @keyframes fall {
@@ -77,6 +77,7 @@
                 column.appendChild(digit);
 
                 // Losowe opóźnienie animacji dla każdego elementu
+                digit.style.animationDuration = `${Math.random() * 5 + 5}s`;  // Cyfry spadają przez losowy czas
                 digit.style.animationDelay = `${Math.random() * 5}s`;
             }
         }
