@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
@@ -95,11 +94,11 @@
             }
         }
 
-        // Uruchamiamy tryb pełnoekranowy po załadowaniu strony
-        window.onload = function() {
+        // Uruchamiamy pełnoekranowy tryb po kliknięciu na stronę
+        window.addEventListener('click', function() {
             enterFullscreen();
             createMatrix();
-        };
+        });
     </script>
 </body>
 </html>
