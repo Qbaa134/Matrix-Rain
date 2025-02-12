@@ -25,18 +25,18 @@
 
         .digit {
             position: absolute;
-            top: -30px;
+            top: -30px; /* zaczynają nad ekranem */
             opacity: 0;
             animation: fall linear infinite;
         }
 
         @keyframes fall {
             0% {
-                top: -30px;
+                top: -30px; /* zaczynają nad ekranem */
                 opacity: 0.1;
             }
             100% {
-                bottom: 1opx; /* Do samego dołu */
+                top: 100vh; /* spadają na dół ekranu */
                 opacity: 1;
             }
         }
@@ -48,8 +48,8 @@
 
     <script>
         const matrix = document.getElementById('matrix');
-        const columns = Math.floor(window.innerWidth / 20); // Obliczamy liczbę kolumn
-        const rows = Math.floor(window.innerHeight / 24); // Obliczamy liczbę wierszy
+        const columns = Math.floor(window.innerWidth / 20); // Liczba kolumn
+        const rows = Math.floor(window.innerHeight / 24); // Liczba wierszy
 
         // Funkcja generująca losowe cyfry i litery
         const getRandomChar = () => Math.random() < 0.5 ? String.fromCharCode(Math.floor(Math.random() * 10) + 48) : String.fromCharCode(Math.floor(Math.random() * 26) + 97);
