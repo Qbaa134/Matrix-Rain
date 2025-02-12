@@ -21,7 +21,6 @@
             font-family: monospace;
             font-size: 24px;
             white-space: nowrap;
-            z-index: 1;
         }
 
         .digit {
@@ -37,7 +36,7 @@
                 opacity: 0.1;
             }
             100% {
-                top: 100%;
+                top: 100vh; /* Do samego dołu */
                 opacity: 1;
             }
         }
@@ -49,8 +48,8 @@
 
     <script>
         const matrix = document.getElementById('matrix');
-        const columns = Math.floor(window.innerWidth / 20);
-        const rows = Math.floor(window.innerHeight / 24);
+        const columns = Math.floor(window.innerWidth / 20); // Obliczamy liczbę kolumn
+        const rows = Math.floor(window.innerHeight / 24); // Obliczamy liczbę wierszy
 
         // Funkcja generująca losowe cyfry i litery
         const getRandomChar = () => Math.random() < 0.5 ? String.fromCharCode(Math.floor(Math.random() * 10) + 48) : String.fromCharCode(Math.floor(Math.random() * 26) + 97);
